@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 快速了解平台用途</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #2c3e50;
+      background: #f9fafb;
+    }
+    a {
+      color: #d97706;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #b45309;
+      text-decoration: underline;
+    }
+
+    /* Hero – 深色头图 */
+    .hero {
+      background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+      color: #f1f5f9;
+      padding: 4rem 1.5rem 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: #f9fafb;
+      clip-path: ellipse(70% 100% at 50% 100%);
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      color: #fcd34d;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 1rem;
+      opacity: 0.85;
+    }
+    .hero .sub {
+      font-size: 0.95rem;
+      opacity: 0.7;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 1rem;
+      display: inline-block;
+    }
+
+    /* 容器 */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    /* 优势区 – 三个卡片 */
+    .advantages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.8rem 1.2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      border: 1px solid #eef2f6;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+    }
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .card h3 i {
+      font-style: normal;
+      color: #d97706;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #475569;
+    }
+
+    /* 说明区 – 简洁段落 */
+    .explain {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem 2rem 1.8rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid #e2e8f0;
+    }
+    .explain h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #0f172a;
+    }
+    .explain p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #334155;
+    }
+    .explain .highlight {
+      background: #fef3c7;
+      padding: 0.1rem 0.3rem;
+      border-radius: 6px;
+      color: #92400e;
+    }
+
+    /* FAQ 摘要 – 简洁折叠感 */
+    .faq {
+      margin-bottom: 2.2rem;
+    }
+    .faq h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #0f172a;
+      border-left: 4px solid #d97706;
+      padding-left: 0.75rem;
+    }
+    .faq-item {
+      background: white;
+      border-radius: 14px;
+      padding: 1rem 1.4rem;
+      margin-bottom: 0.7rem;
+      border: 1px solid #e9edf2;
+    }
+    .faq-item strong {
+      display: block;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 0.2rem;
+    }
+    .faq-item p {
+      font-size: 0.95rem;
+      color: #475569;
+      margin: 0;
+    }
+
+    /* 底部链接区 */
+    .bottom-links {
+      background: white;
+      border-radius: 20px;
+      padding: 1.8rem 2rem;
+      text-align: center;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 1rem;
+    }
+    .bottom-links p {
+      font-size: 1rem;
+      color: #334155;
+      margin-bottom: 0.6rem;
+    }
+    .bottom-links .link-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem 2rem;
+    }
+    .bottom-links a {
+      font-size: 1rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+      .explain { padding: 1.5rem; }
+      .advantages { gap: 0.8rem; }
+      .card { padding: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero 区 -->
+  <section class="hero">
+    <h1>爱游戏</h1>
+    <p>一个帮你快速识别游戏内容与平台调性的信息站点。<br>不绕弯子，用直观的方式呈现网站的核心用途。</p>
+    <span class="sub">基于真实信息 · 聚合场景 · 轻量入口</span>
+  </section>
+
+  <div class="container">
+
+    <!-- 优势区 – 三个不同卡片 -->
+    <div class="advantages">
+      <div class="card">
+        <h3><i>🎮</i> 一眼识别</h3>
+        <p>通过板块布局与分类指引，让新访客在几十秒内理解网站侧重——是资讯、社区还是工具整合。</p>
+      </div>
+      <div class="card">
+        <h3><i>📋</i> 内容脉络</h3>
+        <p>从首页结构到导航逻辑，帮助用户判断自己是否在正确的地方获取想要的信息或服务。</p>
+      </div>
+      <div class="card">
+        <h3><i>🔗</i> 直达目标</h3>
+        <p>不需要层层跳转，重点链接与说明区域清晰呈现，节省反复查找的时间。</p>
+      </div>
+    </div>
+
+    <!-- 说明区 – 切入用户视角 -->
+    <div class="explain">
+      <h2>这个网站主要做什么？</h2>
+      <p>
+        很多朋友第一次打开一个游戏相关网站时，往往会花不少时间去猜测：这里到底是下载站、论坛、媒体还是其他什么？  
+        <a href="https://mainsite-i-game.com.cn">爱游戏</a> 的出发点正是为了降低这种「认知摩擦」——页面围绕游戏相关的信息、资源与讨论进行组织，无论是浏览分类还是查找特定内容，都能较快找到线索。
+      </p>
+      <p>
+        它并不试图包揽所有游戏内容，而是更注重<span class="highlight">用途的可读性</span>：首页的栏目名称、模块先后顺序、文案语气，都在向用户传递“这里侧重什么、不做什么”。如果你希望快速判断一个游戏站点是否值得深入，<a href="https://mainsite-i-game.com.cn">爱游戏</a> 提供的结构本身就是一个参考样本。
+      </p>
+    </div>
+
+    <!-- FAQ 摘要部分 -->
+    <div class="faq">
+      <h2>常见疑问 · 摘要</h2>
+      <div class="faq-item">
+        <strong>▸ 我能在首页找到哪些关键信息？</strong>
+        <p>主要包含平台定位简述、主要板块名称、以及指向具体内容的快捷链接。你可以先通读一下各区域的标题，快速建立全局印象。</p>
+      </div>
+      <div class="faq-item">
+        <strong>▸ 内容会频繁变动吗？</strong>
+        <p>频道核心信息保持稳定，但部分推荐位或更新日志会按周期刷新。如果长期未访问，建议留意首页顶部的最新标注。</p>
+      </div>
+      <div class="faq-item">
+        <strong>▸ 如何确认网站是否适合我？</strong>
+        <p>看一看优势区与说明区的描述，再大致浏览一下导航分类。如果覆盖的主题和你的兴趣有重合，就可以继续探索了。</p>
+      </div>
+    </div>
+
+    <!-- 底部链接区 – 自然嵌入 -->
+    <div class="bottom-links">
+      <p>想进一步了解网站的整体方向与详细内容？</p>
+      <div class="link-group">
+        <a href="https://mainsite-i-game.com.cn">爱游戏</a>
+        <span style="color:#94a3b8;">·</span>
+        <a href="https://mainsite-i-game.com.cn" style="font-weight:400;">爱游戏</a>
+      </div>
+      <p style="margin-top:0.8rem; font-size:0.9rem; color:#94a3b8;">简介页仅用于快速识别用途，具体功能请以实际页面为准。</p>
+    </div>
+
+  </div>
+</body>
+</html>
