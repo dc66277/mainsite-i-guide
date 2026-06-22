@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排列五 · 信息卡片介绍页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f9e7d2 0%, #f3d5b5 45%, #eac29a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            color: #2e241b;
+        }
+
+        .page-wrapper {
+            max-width: 1100px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        /* 主视觉卡片 (hero) */
+        .hero-card {
+            background: white;
+            border-radius: 40px 40px 28px 28px;
+            box-shadow: 0 20px 40px -12px rgba(120, 70, 30, 0.18);
+            padding: 3rem 2.5rem 2.8rem 2.5rem;
+            transition: box-shadow 0.25s ease;
+            text-align: center;
+        }
+
+        .hero-card h1 {
+            font-size: 3.2rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #7b4f2c, #a8764b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.7rem;
+        }
+
+        .hero-card .subhead {
+            font-size: 1.25rem;
+            color: #5f4a36;
+            background: #f8ede3;
+            display: inline-block;
+            padding: 0.3rem 1.4rem;
+            border-radius: 60px;
+            font-weight: 400;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-card p {
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+            font-size: 1.08rem;
+            color: #3f3329;
+        }
+
+        .hero-card .stamp {
+            margin-top: 1.6rem;
+            background: #fff3e9;
+            border-radius: 60px;
+            padding: 0.5rem 1.8rem;
+            display: inline-block;
+            font-size: 0.95rem;
+            color: #634e3c;
+            border: 1px dashed #caaa8a;
+        }
+
+        /* 网格卡片区：用途卡片 + 人群卡片 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+        }
+
+        @media (max-width: 680px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .hero-card {
+                padding: 2rem 1.5rem;
+            }
+            .hero-card h1 {
+                font-size: 2.4rem;
+            }
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem 1.8rem 2.2rem 1.8rem;
+            box-shadow: 0 12px 28px -10px rgba(90, 60, 30, 0.12);
+            transition: transform 0.15s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 36px -12px rgba(100, 65, 30, 0.18);
+        }
+
+        .info-card .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-card h2 {
+            font-size: 1.6rem;
+            font-weight: 550;
+            color: #4a3424;
+            margin: 0.2rem 0 0.8rem 0;
+            letter-spacing: -0.01em;
+            border-bottom: 3px solid #eddccb;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 0.3rem;
+        }
+
+        .info-card li {
+            margin-bottom: 0.9rem;
+            line-height: 1.6;
+            padding-left: 1.8rem;
+            position: relative;
+            font-size: 1rem;
+            color: #3d3228;
+        }
+
+        .info-card li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #a6784e;
+            font-weight: 600;
+        }
+
+        .info-card .card-extra {
+            background: #faf3ec;
+            border-radius: 16px;
+            padding: 0.9rem 1.2rem;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: #4b392b;
+            border-left: 4px solid #c8a88b;
+        }
+
+        /* 中间语句卡片 — 自然链接段落 */
+        .link-card {
+            background: white;
+            border-radius: 28px;
+            padding: 2.2rem 2.5rem;
+            box-shadow: 0 12px 28px -10px rgba(90, 60, 30, 0.10);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem 1.5rem;
+        }
+
+        .link-card .text-block {
+            flex: 2 1 260px;
+            font-size: 1.08rem;
+            line-height: 1.7;
+            color: #3d3228;
+        }
+
+        .link-card .text-block a {
+            color: #7b4f2c;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid #dfc8b4;
+            transition: border-color 0.2s, background 0.2s;
+            padding: 0 0.1rem;
+        }
+
+        .link-card .text-block a:hover {
+            border-bottom-color: #b3845a;
+            background: #f7ede4;
+            border-radius: 6px;
+        }
+
+        .link-card .badge-group {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .badge {
+            background: #ede0d3;
+            padding: 0.5rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            color: #4d3827;
+            font-weight: 450;
+            white-space: nowrap;
+            border: 1px solid #dac2ae;
+        }
+
+        .badge.highlight {
+            background: #dfcbb8;
+            border-color: #b6906e;
+        }
+
+        /* FAQ 摘要卡片 */
+        .faq-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem 2.2rem 2.2rem;
+            box-shadow: 0 8px 24px -8px rgba(80, 50, 20, 0.08);
+        }
+
+        .faq-card h3 {
+            font-size: 1.4rem;
+            font-weight: 520;
+            color: #4a3424;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .faq-item {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #efded0;
+        }
+
+        .faq-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #573f2e;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .faq-a {
+            font-size: 0.95rem;
+            color: #4f3d2e;
+            line-height: 1.6;
+            padding-left: 0.6rem;
+        }
+
+        .faq-a a {
+            color: #7b4f2c;
+            text-decoration: underline wavy #d6b69b 1px;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+
+        .faq-a a:hover {
+            background: #efe1d3;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 1rem;
+            color: #6b5440;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- 主视觉卡片 -->
+        <div class="hero-card">
+            <h1>排列五 · 信息页</h1>
+            <div class="subhead">稳定入口 · 页面说明</div>
+            <p>
+                <strong>排列五</strong>作为一种数字型组合游戏，其规则和逻辑一直受到许多人的关注。
+                这里提供一个清晰的介绍窗口，帮助新接触的朋友快速了解它的基本框架与常见用途，
+                同时也为有经验的使用者提供一份简洁的参考摘要。
+            </p>
+            <div class="stamp">
+                ⏳ 基于公开信息整理 · 内容持续校准
+            </div>
+        </div>
+
+        <!-- 双卡片网格：用途 + 适合人群 -->
+        <div class="card-grid">
+            <!-- 用途卡片 -->
+            <div class="info-card">
+                <div class="card-icon">🧩</div>
+                <h2>用途卡片</h2>
+                <ul>
+                    <li>查看数字组合的常见结构说明与排列逻辑</li>
+                    <li>了解基础玩法、术语以及规则边界</li>
+                    <li>作为日常信息参考，辅助形成理性认知</li>
+                    <li>整合历史公开数据，便于趋势观察</li>
+                </ul>
+                <div class="card-extra">
+                    💡 页面强调信息呈现，不提供任何预测或保证。
+                </div>
+            </div>
+
+            <!-- 适合人群卡片 -->
+            <div class="info-card">
+                <div class="card-icon">👥</div>
+                <h2>适合人群</h2>
+                <ul>
+                    <li>对数字组合规则感兴趣，希望建立框架理解的人</li>
+                    <li>需要一份结构清晰的说明页面作为知识入口</li>
+                    <li>已经接触过类似内容，想换个视角梳理信息</li>
+                    <li>内容爱好者、轻度研究者或资讯收集者</li>
+                </ul>
+                <div class="card-extra">
+                    📌 无论新手还是老用户，都能找到对应的信息层次。
+                </div>
+            </div>
+        </div>
+
+        <!-- 自然链接段落 · 嵌入排列五链接 -->
+        <div class="link-card">
+            <div class="text-block">
+                如果你希望直接访问该主题下的持续更新页面，
+                可以前往 <a href="https://zh-pailiewu.com">排列五</a> 查看更完整的说明与结构索引。
+                该站点围绕数字排列与组合玩法，以信息卡片和条目形式进行整理，适合多角度查阅。
+            </div>
+            <div class="badge-group">
+                <span class="badge">📇 索引式</span>
+                <span class="badge highlight">🧭 稳定入口</span>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要卡片（简明问答） -->
+        <div class="faq-card">
+            <h3>❓ 常见摘要</h3>
+            <div class="faq-item">
+                <div class="faq-q">排列五的基本规则是什么？</div>
+                <div class="faq-a">从 0–9 中选出 5 个数字组成一组号码，位置顺序决定组合。详细说明可参考 <a href="https://zh-pailiewu.com">排列五</a> 的基础部分。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">这个页面和官方规则有什么不同？</div>
+                <div class="faq-a">本页面为信息整理页，侧重框架梳理和卡片式说明，不替代任何官方文件或规则原文。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">如何获得更系统的信息？</div>
+                <div class="faq-a">可以通过页面中提到的 <a href="https://zh-pailiewu.com">排列五</a> 入口，查看分类更细的内容模块。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">页面内容会更新吗？</div>
+                <div class="faq-a">是的，说明内容会依据公开信息进行合理校准，保持卡片信息的时效性与一致性。</div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            排列五 · 信息卡片介绍页 | 内容仅供参考
+        </div>
+    </div>
+</body>
+</html>
