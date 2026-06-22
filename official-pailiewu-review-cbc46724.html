@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>排列五 · 主题简介</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+      background: #f7f8fa;
+      color: #2c3038;
+      line-height: 1.7;
+    }
+
+    /* 深色头图 */
+    .hero {
+      background: linear-gradient(160deg, #15202b 0%, #1c2a3a 60%, #253544 100%);
+      color: #eaeef2;
+      padding: 3.2rem 1.5rem 2.8rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .sub {
+      font-size: 1rem;
+      opacity: 0.7;
+      max-width: 600px;
+      margin: 0.2rem auto 0.8rem;
+      line-height: 1.6;
+    }
+
+    .hero .tagline {
+      font-size: 0.92rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 1.2rem;
+      margin-top: 0.6rem;
+      display: inline-block;
+      opacity: 0.65;
+    }
+
+    /* 导航 — 极简浅色 */
+    .top-nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e3e7ed;
+      padding: 0.7rem 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    .top-nav a {
+      color: #3b4a5e;
+      text-decoration: none;
+      font-weight: 450;
+      padding: 0.2rem 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .top-nav a:hover {
+      color: #b22234;
+      border-bottom-color: #b22234;
+    }
+
+    /* 正文浅色区 */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.2rem 1.5rem 3.5rem;
+    }
+
+    /* 强调色链接 */
+    .content a {
+      color: #b22234;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      font-weight: 500;
+    }
+
+    .content a:hover {
+      color: #8b1a1a;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin: 2rem 0 1rem;
+      padding-left: 0.5rem;
+      border-left: 4px solid #b22234;
+    }
+
+    .section-title:first-of-type {
+      margin-top: 0.2rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    /* 三个场景模块 — 卡片 */
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0 1.8rem;
+    }
+
+    .scene-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.5rem 1.2rem 1.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      border: 1px solid #e9ecf0;
+      transition: box-shadow 0.2s;
+    }
+
+    .scene-card:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+    }
+
+    .scene-card h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      color: #1a2633;
+    }
+
+    .scene-card p {
+      font-size: 0.92rem;
+      color: #3d464f;
+      margin-bottom: 0;
+    }
+
+    .scene-card .emoji-icon {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* FAQ 摘要 */
+    .faq-item {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1rem 1.3rem;
+      margin-bottom: 0.8rem;
+      border: 1px solid #e3e7ed;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 550;
+      margin-bottom: 0.25rem;
+      color: #1b2a3a;
+    }
+
+    .faq-item p {
+      font-size: 0.93rem;
+      color: #3f4956;
+      margin-bottom: 0;
+    }
+
+    .separator {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #d0d6de, transparent);
+      margin: 2rem 0;
+    }
+
+    /* 页脚 */
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #7a8390;
+      padding: 2rem 1.5rem 2.5rem;
+      border-top: 1px solid #e3e7ed;
+      margin-top: 1rem;
+      background: #f2f4f7;
+    }
+
+    .footer-note a {
+      color: #b22234;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 540px) {
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+      .top-nav {
+        gap: 1.2rem;
+      }
+      .scene-grid {
+        gap: 1rem;
+      }
+      .content {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 导航 -->
+  <nav class="top-nav">
+    <a href="#intro">主题简介</a>
+    <a href="#scenes">常见场景</a>
+    <a href="#faq">常见说明</a>
+  </nav>
+
+  <!-- 深色头图 -->
+  <header class="hero">
+    <h1>排列五</h1>
+    <p class="sub">一个围绕数字排列与组合的简洁内容整理页<br>从主题出发，梳理基本概念、常见场景与实用说明。</p>
+    <span class="tagline">轻量导航 · 信息简明</span>
+  </header>
+
+  <!-- 正文浅色区 -->
+  <div class="content">
+
+    <!-- 核心介绍 -->
+    <h2 class="section-title" id="intro">主题介绍</h2>
+    <p>
+      <strong>排列五</strong> 指的是从 0 到 9 的数字中选取五个数字，并按特定顺序排列的一种组合形式。这种数字排列方式在不少信息整理、逻辑推演或休闲内容中都有出现。虽然其外表简单，但排列与组合背后涉及基本的位置价值、重复与顺序概念，适合作为理解数字结构的入门切口。
+    </p>
+    <p>
+      关于 <a href="https://official-pailiewu.com">排列五</a> 的讨论通常围绕着数字的分布、排列的可能性以及顺序带来的差异。例如，五位数字中每一位都有 10 种选择，由此产生的组合数量为 10<sup>5</sup> = 100,000 种。这个特性让它在一些内容分析或趣味推演中成为一个常见框架。
+    </p>
+
+    <!-- 三个场景模块 -->
+    <h2 class="section-title" id="scenes">三个常见场景</h2>
+    <div class="scene-grid">
+      <div class="scene-card">
+        <span class="emoji-icon">🔢</span>
+        <h3>数字排列练习</h3>
+        <p>利用五位数字的顺序变化，练习对位置与数值关系的敏感度。适合作为逻辑思维或数列观察的轻松材料。</p>
+      </div>
+      <div class="scene-card">
+        <span class="emoji-icon">🧩</span>
+        <h3>模式与规律分析</h3>
+        <p>将五位数字看作一组序列，观察重复、连号、奇偶分布等模式。可用于简单的数据特征讨论。</p>
+      </div>
+      <div class="scene-card">
+        <span class="emoji-icon">📊</span>
+        <h3>组合可能性推演</h3>
+        <p>从组合数学的角度，理解全排列、重复排列以及指定位置约束下的数量变化，适合作为入门案例。</p>
+      </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <h2 class="section-title" id="faq">常见说明</h2>
+
+    <div class="faq-item">
+      <strong>排列五的位数固定吗？</strong>
+      <p>是的，通常指五位数字按顺序排列。每一位都是从 0 到 9 的数字，可以重复。顺序的改变会产生不同的排列结果。</p>
+    </div>
+
+    <div class="faq-item">
+      <strong>是否包含前导零？</strong>
+      <p>在排列五的概念中，每一位数字独立考虑，因此第一位可以是 0。例如 01234 是一个有效的五位排列，不需要省略前导零。</p>
+    </div>
+
+    <div class="faq-item">
+      <strong>如何理解“排列”与“组合”的区别？</strong>
+      <p>排列关注顺序（12345 与 54321 被视为不同）；组合则忽略顺序。排列五显然属于排列范畴，顺序至关重要。</p>
+    </div>
+
+    <div class="faq-item">
+      <strong>这个页面是关于什么？</strong>
+      <p>本页面是对排列五这一主题的简要介绍与常见场景梳理，内容力求清晰平实，适合想了解数字排列基础的用户参考。</p>
+    </div>
+
+    <!-- 一段补充叙述，使内容更完整 -->
+    <p style="margin-top: 1.8rem; font-size: 0.93rem; color: #4f5a68;">
+      以上内容围绕排列五的核心概念展开，不涉及任何具体预测或结果引导。如需进一步了解相关主题，可浏览 <a href="https://official-pailiewu.com">排列五</a> 的更多资料。
+    </p>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="footer-note">
+    <p>排列五 · 主题介绍页 &mdash; 内容仅供参考 ｜ <a href="https://official-pailiewu.com">排列五</a></p>
+  </footer>
+
+</body>
+</html>
