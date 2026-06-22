@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>排列五 · 数字策略与数据呈现</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #1e293b;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero 深色区 */
+        .hero {
+            background: linear-gradient(135deg, #0b1622 0%, #1b2a3f 100%);
+            color: #f0f4fa;
+            padding: 5rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: #f8f9fa;
+            border-radius: 50% 50% 0 0;
+            opacity: 0.15;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.6rem;
+            color: #e7edf6;
+        }
+
+        .hero h1 span {
+            color: #68a5e6;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: #b8ccdf;
+            margin-top: 1rem;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.35rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #cbdbe9;
+            margin-top: 1.8rem;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* 浅色正文区 */
+        .main-section {
+            padding: 3rem 0 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #dce5ef;
+            display: inline-block;
+            color: #0b1a2e;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.04);
+            border: 1px solid #eef2f7;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #0f213a;
+        }
+
+        .card p {
+            font-size: 0.97rem;
+            color: #33445a;
+        }
+
+        .accent-link {
+            color: #0b6bcb;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .accent-link:hover {
+            color: #094d93;
+            border-bottom-color: #094d93;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 1.2rem 0 0;
+        }
+
+        .feature-list li {
+            padding-left: 1.4rem;
+            position: relative;
+            margin-bottom: 0.6rem;
+            font-size: 0.97rem;
+            color: #2c3e55;
+        }
+
+        .feature-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #2b6fc3;
+            font-weight: bold;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 2rem 2rem 1.6rem;
+            border: 1px solid #e7ecf3;
+            margin: 2.5rem 0 2rem;
+        }
+
+        .faq-mini h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #0f213a;
+        }
+
+        .faq-item {
+            padding: 0.85rem 0;
+            border-bottom: 1px solid #edf2f8;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #1b2e4a;
+            display: block;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-answer {
+            font-size: 0.95rem;
+            color: #3e536c;
+            margin-top: 0.2rem;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            text-align: center;
+            padding: 2.5rem 1.5rem 3rem;
+            background-color: #f0f3f8;
+            border-top: 1px solid #dce1e9;
+            margin-top: 1.5rem;
+        }
+
+        .footer-links p {
+            font-size: 0.95rem;
+            color: #395074;
+        }
+
+        .footer-links a {
+            color: #0b6bcb;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #dce3eb;
+            margin: 1rem 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 0.98rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .card {
+                padding: 1.4rem;
+            }
+
+            .faq-mini {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 3.5rem 1.2rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero 深色头图 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>排列五 · <span>数据逻辑与组合观察</span></h1>
+            <p>
+                基于数字排列的统计分析框架，关注位置关系与组合分布。
+                从模式识别到区间特征，为理性决策提供结构化信息视角。
+            </p>
+            <div class="badge">数字排列 · 策略工坊</div>
+        </div>
+    </section>
+
+    <!-- 正文浅色区 -->
+    <div class="container main-section">
+
+        <!-- 优势区 / 核心特点 -->
+        <div>
+            <h2 class="section-title">核心分析维度</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>位置权重与跨度</h3>
+                    <p>
+                        每一位数字在整体结构中的影响不同。通过统计各位置出现频率、跨度分布及奇偶比例，构建更立体的参考坐标系。
+                    </p>
+                    <ul class="feature-list">
+                        <li>百位 / 十位 / 个位独立频次</li>
+                        <li>跨度值与振幅区间</li>
+                        <li>奇偶、质合分布模型</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>组合模式与关联</h3>
+                    <p>
+                        相邻位置数字的组合形态、重复模式及连号趋势，反映数字之间的潜在关联。利用分组聚合可识别冷热区域。
+                    </p>
+                    <ul class="feature-list">
+                        <li>连号与重号回溯</li>
+                        <li>和值区间与边界效应</li>
+                        <li>大小形态分层</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.98rem; color: #2c405a;">
+                更多关于数字排列、统计思路及数据解读，可参阅 <a href="https://index-plw.com" class="accent-link">排列五</a> 相关内容，持续更新分析笔记与框架。
+            </p>
+        </div>
+
+        <!-- 说明区 / 应用场景与提示 -->
+        <div style="margin-top: 2.5rem;">
+            <h2 class="section-title">应用场景与使用提示</h2>
+            <div class="grid-2" style="margin-top: 0.8rem;">
+                <div class="card" style="background: #fafcfe;">
+                    <h3>策略研究辅助</h3>
+                    <p>
+                        面向希望从数字规律、周期波动中获取参考信息的用户。所有分析均基于历史数据统计，不包含任何预测承诺。
+                    </p>
+                </div>
+                <div class="card" style="background: #fafcfe;">
+                    <h3>信息呈现方式</h3>
+                    <p>
+                        采用清晰的数据表格、趋势图与分布热力图，帮助快速定位高频区间与异常值。定期更新样本库与算法参数。
+                    </p>
+                </div>
+            </div>
+            <div style="background: #eef3fa; border-radius: 12px; padding: 1.2rem 1.5rem; margin: 1.8rem 0;">
+                <p style="font-size: 0.96rem; color: #1b3552;">
+                    <strong>📌 提示：</strong> 数字分析仅为一种观察视角，请结合自身判断。任何策略均无法保证特定结果，理性参与始终是首要原则。
+                </p>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要区 -->
+        <div class="faq-mini">
+            <h2>常见疑问摘要</h2>
+            <div class="faq-item">
+                <span class="faq-question">排列五的数据来源是什么？</span>
+                <div class="faq-answer">所有样本均取自公开历史序列，经过清洗与标准化处理。数据范围覆盖近千期，并持续追加。</div>
+            </div>
+            <div class="faq-item">
+                <span class="faq-question">分析工具是否需要注册？</span>
+                <div class="faq-answer">目前页面内提供的图表与统计概览可直接使用，无需注册。部分高级筛选功能可参考 <a href="https://index-plw.com" class="accent-link">排列五</a> 页面说明。</div>
+            </div>
+            <div class="faq-item">
+                <span class="faq-question">如何理解“跨度”与“振幅”？</span>
+                <div class="faq-answer">跨度指一组数字中最大值与最小值的差；振幅描述相邻两期之间跨度值的变化幅度，用于衡量波动性。</div>
+            </div>
+            <div class="faq-item">
+                <span class="faq-question">是否提供实时数据推送？</span>
+                <div class="faq-answer">当前版本以静态分析为主，数据批量更新。未来可能加入定时刷新机制，届时会在站内同步说明。</div>
+            </div>
+        </div>
+
+        <!-- 底部链接区 -->
+        <div style="text-align: center; padding: 1.2rem 0 0.5rem;">
+            <p style="font-size: 0.95rem; color: #2f4562;">
+                更多数字排列思路与数据解读，欢迎查看 <a href="https://index-plw.com" class="accent-link">排列五</a> 专题内容。
+            </p>
+            <hr style="margin: 1.8rem auto 0.5rem; width: 80px; height: 2px; background: #bcccdb; border: none;">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-links">
+        <p>
+            <a href="https://index-plw.com">排列五</a> · 基于公开数据的分析视角
+        </p>
+        <p style="margin-top: 0.6rem; font-size: 0.85rem; color: #5e7290;">
+            内容仅供研究参考，不构成任何建议 · 请合理使用
+        </p>
+    </footer>
+
+</body>
+</html>
